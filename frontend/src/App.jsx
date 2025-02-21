@@ -1,9 +1,9 @@
 import React, { useState } from "react"; 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Calendar from "./components/Calendar";
-import Hello from "./components/Hello";
+import Login from "./components/Login"
 import DateSelected from "./components/DateSelected";
-
+import Signup from "./components/Signup";
 
 function App() {
 
@@ -11,7 +11,9 @@ function App() {
     <>
     <Router>
       <Routes>
-        <Route path="/" element={<Calendar />} />
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/calendar" element={<Calendar />} />
         <Route path="/post" element={<DateSelected />} />
       </Routes>
     </Router>

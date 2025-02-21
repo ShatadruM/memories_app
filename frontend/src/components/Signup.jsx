@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Login = () => {
+const Signup = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
@@ -9,13 +9,25 @@ const Login = () => {
           <h2 className="text-4xl font-bold text-indigo-600">MEMORIES</h2>
         </div>
 
-        {/* Login Form */}
+        {/* Signup Form */}
         <div className="bg-white p-8 rounded-lg shadow-md">
           <h1 className="text-2xl font-bold text-gray-900 text-center mb-6">
-            Login to your Account
+            Create your Account
           </h1>
           
           <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <input
+                type="text"
+                placeholder="First Name"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              />
+              <input
+                type="text"
+                placeholder="Last Name"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              />
+            </div>
             <input
               type="email"
               placeholder="Email"
@@ -26,12 +38,17 @@ const Login = () => {
               placeholder="Password"
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
             />
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+            />
             <button className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-200">
-              Sign In
+              Sign Up
             </button>
           </div>
 
-          {/* Social Login Section */}
+          {/* Social Signup Section */}
           <div className="mt-8">
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
@@ -39,7 +56,7 @@ const Login = () => {
               </div>
               <div className="relative flex justify-center text-sm">
                 <span className="px-2 bg-white text-gray-500">
-                  Or sign in with
+                  Or sign up with
                 </span>
               </div>
             </div>
@@ -57,11 +74,11 @@ const Login = () => {
             </div>
           </div>
 
-          {/* Sign Up Link */}
+          {/* Login Link */}
           <div className="mt-6 text-center">
-            <h3 className="inline text-gray-600">Don't have an account? </h3>
-            <a href="/signup" className="text-indigo-600 font-medium cursor-pointer hover:text-indigo-500">
-              Sign Up
+            <h3 className="inline text-gray-600">Already have an account? </h3>
+            <a href="/login" className="text-indigo-600 font-medium cursor-pointer hover:text-indigo-500">
+              Sign In
             </a>
           </div>
         </div>
@@ -70,4 +87,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Signup
