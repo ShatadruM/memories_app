@@ -1,6 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { auth } from './Firebase'
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      // Redirect or handle successful login
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      await signInWithPopup(auth, provider);
+      // Redirect or handle successful login
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
@@ -15,21 +41,28 @@ const Login = () => {
             Login to your Account
           </h1>
           
-          <div className="space-y-4">
-            <input
-              type="email"
-              placeholder="Email"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-            />
-            <button className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-200">
-              Sign In
-            </button>
-          </div>
+          <form onSubmit={handleSubmit}>
+            <div className="space-y-4">
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              />
+              {error && <p className="text-red-500 text-sm">{error}</p>}
+              <button type="submit" className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-200">
+                Sign In
+              </button>
+            </div>
+          </form>
 
           {/* Social Login Section */}
           <div className="mt-8">
@@ -45,7 +78,7 @@ const Login = () => {
             </div>
 
             <div className="mt-6 grid grid-cols-3 gap-3">
-              <div className="flex justify-center items-center px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 cursor-pointer">
+              <div className="flex justify-center items-center px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 cursor-pointer" onClick={handleGoogleSignIn}>
                 <img src="" alt="Google" className="h-5 w-5" />
               </div>
               <div className="flex justify-center items-center px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 cursor-pointer">
