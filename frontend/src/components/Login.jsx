@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { auth } from './Firebase'
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import Signingoogle from './Signingoogle'
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -12,6 +13,8 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       // Redirect or handle successful login
+      window.location.href = '/calendar';
+      
     } catch (error) {
       setError(error.message);
     }
@@ -22,6 +25,9 @@ const Login = () => {
     try {
       await signInWithPopup(auth, provider);
       // Redirect or handle successful login
+      
+        window.location.href = '/calendar';
+      
     } catch (error) {
       setError(error.message);
     }
@@ -79,7 +85,7 @@ const Login = () => {
 
             <div className="mt-6 grid grid-cols-3 gap-3">
               <div className="flex justify-center items-center px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 cursor-pointer" onClick={handleGoogleSignIn}>
-                <img src="" alt="Google" className="h-5 w-5" />
+                <Signingoogle/>
               </div>
               <div className="flex justify-center items-center px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 cursor-pointer">
                 <img src="" alt="Facebook" className="h-5 w-5" />
